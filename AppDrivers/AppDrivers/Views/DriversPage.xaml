@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converter="clr-namespace:AppDrivers.Converters"
+             mc:Ignorable="d"
+             Title="Conductores"             
+             BackgroundImageSource="autopista.jpg"
+             x:Class="AppDrivers.Views.DriversPage">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nuevo" Command="{Binding NewCommand}" />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ImageConverters x:Key="ImageConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding RefreshCommand}">
+        <CollectionView x:Name="ItemsCollectionView"
+                ItemsSource="{Binding Drivers}"
+                SelectionChangedCommand="{Binding ModifyCommand}"
+                SelectionChangedCommandParameter="{Binding Source={x:Reference ItemsCollectionView}, Path=SelectedItem}"
+                SelectionMode="Single" >
+            <d:CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>First Item</x:String>
+                    <x:String>Second Item</x:String>
+                    <x:String>Third Item</x:String>
+                    <x:String>Fourth Item</x:String>
+                    <x:String>Fifth Item</x:String>
+                    <x:String>Sixth Item</x:String>
+                </x:Array>
+            </d:CollectionView.ItemsSource>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding Name}" 
+                                d:Text="Nombre"
+                                LineBreakMode="NoWrap"
+                                HorizontalOptions="Center"
+                                TextColor="White"
+                                FontSize="16" />
+                        <Label Text="{Binding Status}" 
+                                d:Text="Estatus"
+                                LineBreakMode="NoWrap"
+                                HorizontalOptions="Center"
+                                TextColor="White"
+                                FontSize="13" />
+                        <Image Source="{Binding Picture}"
+                               HorizontalOptions="Center"
+                               HeightRequest="200" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

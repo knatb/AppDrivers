@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Detalle"
+             x:Class="AppDrivers.Views.DriversDetailPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Guardar" Command="{Binding SaveCommand}"/>
+        <ToolbarItem Text="Eliminar" Command="{Binding DeleteCommand}"/>
+        <ToolbarItem Text="Mapa" Command="{Binding MapCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <ActivityIndicator IsVisible="{Binding IsBusy}" d:IsRunning="True"/>
+                <Entry Placeholder="Nombre" Text="{Binding Name}"/>
+                <Entry Placeholder="Status" Text="{Binding Status}"/>
+                <Entry Placeholder="Latitud" Text="{Binding Latitude}"/>
+                <Entry Placeholder="Longitud" Text="{Binding Longitude}"/>
+                <Button Text="Obtener ubicación" Command="{Binding GetLocationCommand}"/>
+                <Entry Placeholder="Url de la imagen" Text="{Binding Picture}"/>
+                <Image Source="{Binding PictureSource}"/>
+                <Button Text="Tomar Fotografia" Command="{Binding TakePictureCommand}"/>
+                <Button Text="Seleccionar desde la galeria" Command="{Binding SelectPictureCommand}"/>
+
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>
